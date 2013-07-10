@@ -4,6 +4,7 @@
     "description": "PHP ORM Layer",
     "keywords": ["ORM"],
     "homepage": "http://github.com/chareice/cinder",
+    "version" :"1.0.0",
     "license": "Mozilla",
     "authors": [
         {
