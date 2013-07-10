@@ -1,7 +1,7 @@
 Cinder
 ======
 
-Cinder is a Mozilla Licensed PHP ORM Layer Write By [Chareice](http://weibo.com/chareice).
+Cinder is a Mozilla Licensed PHP ORM Layer Written By [Chareice](http://weibo.com/chareice).
 
 Installing Cinder using Composer
 -----
@@ -28,7 +28,7 @@ Installing Cinder using Composer
 
 Usage
 -----
-1. First user must configured connection to Database use PDO Style
+1. At first, User must configure the connection to Database using PDO Style:
 
   ```php
   <?php
@@ -37,15 +37,15 @@ Usage
   Cinder\Cinder::Config("mysql:host=localhost;dbname=app_test","root","pass");
   ```
   
-1. Then User Can manipulate Cinder to give it a `$options` like this:
+1. Then User Can manipulate Cinder By feed it a `$options` variable like this:
 
   ```php
   $options = array(
-    "table"   => "article",
-    "primary" => "id",
-    "value"   => "1"
+        "table"   => "article",
+        "primary" => "id",
+        "value"   => "1"
   );
   $article = Cinder\Cinder::getInstance($options);
   ```
-  now `$article` variable is the ORM Object that mapping to your article table row which id equal 1.
+  Now `$article` variable is the ORM Object that mapping to your article table row which id equal 1.
   
