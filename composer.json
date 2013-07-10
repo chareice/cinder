@@ -1,0 +1,24 @@
+{
+    "name": "Cinder/Cinder",
+    "type": "library",
+    "description": "PHP ORM Layer",
+    "keywords": ["ORM"],
+    "homepage": "http://github.com/chareice/cinder",
+    "license": "Mozilla",
+    "authors": [
+        {
+            "name": "Chareice",
+            "email": "chareice@live.com",
+            "homepage": "http://chareice.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "Cinder": ""
+        }
+    }
+}
