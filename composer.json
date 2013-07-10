@@ -1,5 +1,5 @@
 {
-    "name": "Cinder/Cinder",
+    "name": "cinder/cinder",
     "type": "library",
     "description": "PHP ORM Layer",
     "keywords": ["ORM"],
