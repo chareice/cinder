@@ -28,7 +28,7 @@ Installing Cinder using Composer
 
 Usage
 -----
-1. At first, User must configure the connection to Database using PDO Style:
+1. At first, User must configure the connection to Database by using PDO Style:
 
   ```php
   <?php
@@ -37,15 +37,16 @@ Usage
   Cinder\Cinder::Config("mysql:host=localhost;dbname=app_test","root","pass");
   ```
   
-1. Then User Can manipulate Cinder By feed it a `$options` variable like this:
+1. Then user can manipulate Cinder by offer it a `$options` variable like this:
 
   ```php
   $options = array(
         "table"   => "article",
         "primary" => "id",
+        "field"   => "Hello Wrold",
         "value"   => "1"
   );
   $article = Cinder\Cinder::getInstance($options);
   ```
-  Now `$article` variable is the ORM Object that mapping to your article table row which id equal 1.
+  Now `$article` variable is the ORM Object that mapping to your row in article table which title equals "Hello World".
   
