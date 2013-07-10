@@ -43,8 +43,8 @@ Usage
   $options = array(
         "table"   => "article",
         "primary" => "id",
-        "field"   => "Hello Wrold",
-        "value"   => "1"
+        "field"   => "title",
+        "value"   => "Hello Wrold"
   );
   $article = Cinder\Cinder::getInstance($options);
   ```
