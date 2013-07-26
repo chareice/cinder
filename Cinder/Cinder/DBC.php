@@ -34,7 +34,7 @@ class DBC{
     * Validate Database Connection Parameter 
     */
     private static function checkConfig(){
-        if(self::$_DNS && self::$_USER && self::$_PASS){
+        if(isset(self::$_DNS) && isset(self::$_USER) && isset(self::$_PASS)){
             return true;
         }else{
             throw new \Exception("Please config your database first", 1);
