@@ -58,55 +58,27 @@ class Cinder{
         if($_isNew){
             return new ORM($options);
         }else{
-            /**
-            * select row count from database
-            */
+            $orms = array();
             if(isset($options['like'])){
-                $like = true;
-                $sql = "select count(*) as count from ".self::tableStmt()." where `{$options['field']}` like :{$options['field']}";
+                $sql = "select `{$options['primary']}` from ".self::tableStmt()." where `{$options['field']}` like :{$options['field']}".self::orderStmt().self::limitStmt();
                 $stmt = $db->prepare($sql);
-                $stmt->bindValue(":".$options['field'],"%".$options['value']."%");
+                $stmt->bindValue($options['field'],"%{$options['value']}%");
             }else{
-                $sql = "select count(*) as count from ".self::tableStmt()." where `{$options['field']}` = :{$options['field']}";
+                $sql = "select `{$options['primary']}` from ".self::tableStmt()." where `{$options['field']}`= :{$options['field']}".self::orderStmt().self::limitStmt();
                 $stmt = $db->prepare($sql);
                 $stmt->bindValue($options['field'],$options['value']);
             }
 
             $stmt->execute();
-            $count = $stmt->fetchColumn();
+            
+            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
-            if($count > 1){
-                /**
-                * If row count greater than one,will return an Array consist of ORM Object
-                */
-                $orms = array();
-                if(isset($options['like'])){
-                    $sql = "select `{$options['primary']}` from ".self::tableStmt()." where `{$options['field']}` like :{$options['field']}".self::orderStmt().self::limitStmt();
-                    $stmt = $db->prepare($sql);
-                    $stmt->bindValue($options['field'],"%{$options['value']}%");
-                }else{
-                    $sql = "select `{$options['primary']}` from ".self::tableStmt()." where `{$options['field']}`= :{$options['field']}".self::orderStmt().self::limitStmt();
-                    $stmt = $db->prepare($sql);
-                    $stmt->bindValue($options['field'],$options['value']);
-                }
-
-                $stmt->execute();
-                
-                $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-
-                foreach ($result as $row) {
-                    $orm = new ORM($options);
-                    $orm->load($row[$options['primary']],$options['primary']);
-                    array_push($orms, $orm);
-                }
-                return $orms;
-            }else if($count == 1){
+            foreach ($result as $row) {
                 $orm = new ORM($options);
-                $orm->load($options['value'],$options['field']);
-                return $orm;
-            }else{
-                throw new \Exception("Error disappre when create Cinder", 1);
+                $orm->load($row[$options['primary']],$options['primary']);
+                array_push($orms, $orm);
             }
+            return $orms;
         }
     }
 
